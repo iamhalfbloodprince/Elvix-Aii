@@ -20,6 +20,7 @@ import Cohere from "./Cohere";
 import DeepInfra from "./DeepInfra";
 import Deepseek from "./Deepseek";
 import Docker from "./Docker";
+import ElvixLocal from "./ElvixLocal";
 import Fireworks from "./Fireworks";
 import Flowise from "./Flowise";
 import FunctionNetwork from "./FunctionNetwork";
@@ -65,6 +66,7 @@ import xAI from "./xAI";
 export const LLMClasses = [
   Anthropic,
   Cohere,
+  ElvixLocal,
   FunctionNetwork,
   Gemini,
   Llamafile,

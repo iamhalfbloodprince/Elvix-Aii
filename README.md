@@ -1,17 +1,17 @@
 <div align="center">
 
-![Continue logo](media/readme.png)
+![ELVIX AI logo](media/elvix-readme.png)
 
 </div>
 
-<h1 align="center">Continue</h1>
+<h1 align="center">ELVIX AI</h1>
 
 <div align="center">
 
-**[Continue](https://docs.continue.dev) enables developers to create, share, and use custom AI code assistants with our
-open-source [VS Code](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
-and [JetBrains](https://plugins.jetbrains.com/plugin/22707-continue-extension) extensions
-and [hub of models, rules, prompts, docs, and other building blocks](https://hub.continue.dev)**
+**[ELVIX AI](https://elvix.ai) is the next-generation AI code assistant that enables developers to create, share, and use custom AI coding assistants with our
+open-source [VS Code](https://marketplace.visualstudio.com/items?itemName=ElvixAI.elvix-ai)
+and [JetBrains](https://plugins.jetbrains.com/plugin/22707-elvix-ai-extension) extensions.
+Features powerful offline models including Llama, Code Llama, and other state-of-the-art LLMs for complete privacy and control.**
 
 </div>
 
@@ -20,55 +20,79 @@ and [hub of models, rules, prompts, docs, and other building blocks](https://hub
 <a target="_blank" href="https://opensource.org/licenses/Apache-2.0" style="background:none">
     <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" style="height: 22px;" />
 </a>
-<a target="_blank" href="https://docs.continue.dev" style="background:none">
-    <img src="https://img.shields.io/badge/continue_docs-%23BE1B55" style="height: 22px;" />
+<a target="_blank" href="https://docs.elvix.ai" style="background:none">
+    <img src="https://img.shields.io/badge/elvix_ai_docs-%23BE1B55" style="height: 22px;" />
 </a>
-<a target="_blank" href="https://changelog.continue.dev" style="background:none">
+<a target="_blank" href="https://changelog.elvix.ai" style="background:none">
     <img src="https://img.shields.io/badge/changelog-%96EFF3" style="height: 22px;" />
 </a>
-<a target="_blank" href="https://discord.gg/vapESyrFmJ" style="background:none">
-    <img src="https://img.shields.io/badge/discord-join-continue.svg?labelColor=191937&color=6F6FF7&logo=discord" style="height: 22px;" />
+<a target="_blank" href="https://discord.gg/elvixai" style="background:none">
+    <img src="https://img.shields.io/badge/discord-join-elvix.svg?labelColor=191937&color=6F6FF7&logo=discord" style="height: 22px;" />
 </a>
 
 <p></p>
 
-## Agent
+## 🤖 ELVIX AI Agent
 
-[Agent](https://continue.dev/docs/agent/how-to-use-it) enables you to make more substantial changes to your codebase
+[ELVIX Agent](https://elvix.ai/docs/agent/how-to-use-it) enables you to make substantial changes to your codebase with advanced AI reasoning and planning capabilities
 
 ![agent](docs/images/agent.gif)
 
-## Chat
+## 💬 Intelligent Chat
 
-[Chat](https://continue.dev/docs/chat/how-to-use-it) makes it easy to ask for help from an LLM without needing to leave
-the IDE
+[ELVIX Chat](https://elvix.ai/docs/chat/how-to-use-it) provides seamless AI assistance without leaving your IDE, powered by state-of-the-art language models
 
 ![chat](docs/images/chat.gif)
 
-## Autocomplete
+## ⚡ Smart Autocomplete
 
-[Autocomplete](https://continue.dev/docs/autocomplete/how-to-use-it) provides inline code suggestions as you type
+[ELVIX Autocomplete](https://elvix.ai/docs/autocomplete/how-to-use-it) delivers intelligent inline code suggestions as you type, including support for local offline models
 
 ![autocomplete](docs/images/autocomplete.gif)
 
-## Edit
+## ✏️ Contextual Edit
 
-[Edit](https://continue.dev/docs/edit/how-to-use-it) is a convenient way to modify code without leaving your current
-file
+[ELVIX Edit](https://elvix.ai/docs/edit/how-to-use-it) allows you to modify code contextually without leaving your current file
 
 ![edit](docs/images/edit.gif)
+
+## 🔒 Offline Model Support
+
+**NEW in ELVIX AI:** Complete privacy with local model execution:
+- **Llama 3.1/3.2** - Latest Llama models for code generation
+- **Code Llama** - Specialized for programming tasks  
+- **Qwen Coder** - High-performance coding model
+- **DeepSeek Coder** - Advanced code understanding
+- **StarCoder** - Multi-language code completion
+- **Mistral** - Fast and efficient reasoning
+
+## 🚀 Enhanced Features
+
+- **Multi-Model Support**: Switch between cloud and local models seamlessly
+- **Advanced Context**: Better codebase understanding and context awareness
+- **Custom Rules**: Define project-specific coding patterns and guidelines
+- **Enhanced Security**: All processing can stay local with offline models
+- **Performance Optimized**: Faster response times with local inference
+- **Enterprise Ready**: Deploy privately without external dependencies
 
 </div>
 
 ## Getting Started
 
-Learn about how to install and use Continue in the docs [here](https://continue.dev/docs/getting-started/install)
+Learn how to install and use ELVIX AI in the docs [here](https://elvix.ai/docs/getting-started/install)
+
+### Quick Setup for Offline Models
+
+1. Install ELVIX AI extension
+2. Install Ollama: `curl -fsSL https://ollama.ai/install.sh | sh`
+3. Pull a model: `ollama pull llama3.1:8b`
+4. Configure ELVIX to use your local model
 
 ## Contributing
 
-Read the [contributing guide](https://github.com/continuedev/continue/blob/main/CONTRIBUTING.md), and
-join [#contribute on Discord](https://discord.gg/vapESyrFmJ).
+Read the [contributing guide](https://github.com/elvix-ai/elvix/blob/main/CONTRIBUTING.md), and
+join [#contribute on Discord](https://discord.gg/elvixai).
 
 ## License
 
-[Apache 2.0 © 2023-2024 Continue Dev, Inc.](./LICENSE)
+[Apache 2.0 © 2023-2024 ELVIX AI, Inc.](./LICENSE)
