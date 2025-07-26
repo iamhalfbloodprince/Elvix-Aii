@@ -1,103 +1,135 @@
-import { useContext } from "react";
-import { Button, SecondaryButton } from "../..";
-import { useAuth } from "../../../context/Auth";
-import { IdeMessengerContext } from "../../../context/IdeMessenger";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { selectCurrentOrg } from "../../../redux/slices/profilesSlice";
-import { selectFirstHubProfile } from "../../../redux/thunks/selectFirstHubProfile";
-import { hasPassedFTL } from "../../../util/freeTrial";
-import { ToolTip } from "../../gui/Tooltip";
-import ContinueLogo from "../../svg/ContinueLogo";
-import { useOnboardingCard } from "../hooks/useOnboardingCard";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { getFontSize } from "../../../util";
+import { vscBackground, vscForeground } from "../../vscIndexScript";
+import { Br } from "../../vscIndexScript";
+import { lightGray } from "../../vscIndexScript";
+import { HeaderButtonWithText } from "../../HeaderButtonWithText";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import ElvixLogo from "../../svg/ElvixLogo";
 
-export function OnboardingCardLanding({
-  onSelectConfigure,
-  isDialog,
-}: {
-  onSelectConfigure: () => void;
-  isDialog?: boolean;
-}) {
-  const ideMessenger = useContext(IdeMessengerContext);
-  const onboardingCard = useOnboardingCard();
-  const auth = useAuth();
-  const currentOrg = useAppSelector(selectCurrentOrg);
-  const dispatch = useAppDispatch();
+interface OnboardingCardLandingProps {
+  onNext: () => void;
+  hasModel: boolean;
+}
 
-  function onGetStarted() {
-    void auth.login(true).then((success) => {
-      if (success) {
-        onboardingCard.close(isDialog);
+const DISABLED_PROVIDERS_MESSAGE = (
+  <p
+    style={{
+      color: lightGray,
+      fontSize: getFontSize() - 2,
+      margin: "8px",
+    }}
+  >
+    Some free trial models have been disabled due to high demand. ELVIX AI
+    recommends setting up local models for the best experience.{" "}
+    <a
+      href="https://docs.elvix.ai/walkthroughs/running-continue-without-internet"
+      target="_blank"
+      style={{
+        color: lightGray,
+        textDecoration: "underline",
+      }}
+    >
+      Learn more
+    </a>
+  </p>
+);
 
-        // A new assistant is created when the account is created
-        // We want to switch to this immediately
-        void dispatch(selectFirstHubProfile());
-      }
-    });
-  }
-
-  function openPastFreeTrialOnboarding() {
-    ideMessenger.post("controlPlane/openUrl", {
-      path: "setup-models",
-      orgSlug: currentOrg?.slug,
-    });
-    onboardingCard.close(isDialog);
-  }
-
-  const pastFreeTrialLimit = hasPassedFTL();
+function OnboardingCardLanding({
+  onNext,
+  hasModel,
+}: OnboardingCardLandingProps) {
+  const [warningOpen, setWarningOpen] = useState(false);
 
   return (
-    <div className="xs:px-0 flex w-full max-w-full flex-col items-center justify-center px-4 text-center">
-      <div className="xs:flex hidden">
-        <ContinueLogo height={75} />
-      </div>
+    <div
+      style={{
+        padding: "16px",
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        textAlign: "center",
+      }}
+    >
+      <ElvixLogo height={75} />
+      <Br />
+      <h1
+        style={{
+          fontSize: `${getFontSize() + 4}px`,
+          fontWeight: "bold",
+          margin: "16px 0 8px 0",
+          color: vscForeground,
+        }}
+      >
+        Welcome to ELVIX AI
+      </h1>
+      <p
+        style={{
+          color: lightGray,
+          fontSize: getFontSize(),
+          margin: "0 0 16px 0",
+        }}
+      >
+        Your advanced AI code assistant with powerful local model support for
+        enhanced privacy and performance
+      </p>
 
-      {pastFreeTrialLimit ? (
-        <>
-          <p className="xs:w-3/4 w-full text-sm">
-            You've reached the free trial limit. Visit the Continue Platform to
-            select a Coding Assistant.
-          </p>
-          <Button
-            onClick={openPastFreeTrialOnboarding}
-            className="mt-4 grid w-full grid-flow-col items-center gap-2"
+      {!hasModel && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: vscBackground,
+            border: "1px solid orange",
+            borderRadius: "4px",
+            padding: "8px",
+            marginBottom: "16px",
+            width: "100%",
+          }}
+        >
+          <ExclamationTriangleIcon
+            color="orange"
+            width="16px"
+            style={{ marginRight: "8px" }}
+          />
+          <p
+            style={{
+              color: lightGray,
+              fontSize: getFontSize() - 2,
+              margin: "0",
+              flex: 1,
+            }}
           >
-            Go to Continue Platform
-          </Button>
-        </>
-      ) : (
-        <>
-          <p className="mb-5 mt-0 w-full text-sm">
-            Log in to access a free trial of the
-            <br />
+            You haven't configured any models yet.{" "}
             <span
-              className="cursor-pointer underline hover:brightness-125"
-              data-tooltip-id="models-addon-tooltip"
-              onClick={() =>
-                ideMessenger.post("controlPlane/openUrl", {
-                  path: "pricing",
-                })
-              }
+              style={{
+                textDecoration: "underline",
+                cursor: "pointer",
+              }}
+              onClick={() => setWarningOpen(!warningOpen)}
             >
-              Models Add-On
+              Click here to learn why.
             </span>
-            <ToolTip id="models-addon-tooltip" place="bottom">
-              Free trial includes 50 Chat requests and 2,000 autocomplete
-              requests
-            </ToolTip>
           </p>
-
-          <Button
-            onClick={onGetStarted}
-            className="mt-4 grid w-full grid-flow-col items-center gap-2"
-          >
-            Log in to Continue Hub
-          </Button>
-        </>
+        </div>
       )}
 
-      <SecondaryButton onClick={onSelectConfigure} className="w-full">
-        Or, configure your own models
-      </SecondaryButton>
+      {warningOpen && DISABLED_PROVIDERS_MESSAGE}
+
+      <HeaderButtonWithText
+        onClick={onNext}
+        text={hasModel ? "Get started with ELVIX AI" : "Configure ELVIX AI"}
+        style={{
+          fontSize: getFontSize() + 2,
+          padding: "12px 20px",
+          borderRadius: "8px",
+        }}
+      >
+        <ArrowRightIcon color={vscBackground} width="16px" height="16px" />
+      </HeaderButtonWithText>
     </div>
   );
 }
+
+export default OnboardingCardLanding;

@@ -1,0 +1,173 @@
+# ELVIX AI Configuration
+# This configuration demonstrates ELVIX AI's enhanced features and local model support
+# For more information, visit: https://docs.elvix.ai
+
+models:
+  - title: "ELVIX Local Chat"
+    provider: "elvix-local"
+    model: "llama3.1:8b"
+    systemMessage: |
+      You are ELVIX AI, an advanced code assistant that helps developers write better code. 
+      You have access to powerful local models that ensure privacy and performance.
+      
+      Key capabilities:
+      - Write and debug code in any programming language
+      - Explain complex algorithms and design patterns
+      - Optimize code for performance and readability
+      - Generate comprehensive tests and documentation
+      - Refactor legacy code with modern best practices
+    
+  - title: "ELVIX Code Completion"
+    provider: "elvix-local"
+    model: "qwen2.5-coder:7b"
+    roles: ["autocomplete"]
+    systemMessage: "You are ELVIX AI specialized for code completion and generation. Provide concise, accurate code suggestions."
+
+  - title: "ELVIX Reasoning"
+    provider: "elvix-local"
+    model: "llama3.1:8b"
+    roles: ["chat", "apply"]
+    systemMessage: |
+      You are ELVIX AI with advanced reasoning capabilities. Help users with:
+      - Complex problem solving and algorithm design
+      - Code architecture and design decisions
+      - Performance analysis and optimization strategies
+      - Security analysis and best practices
+
+# Local model for fast autocomplete
+tabAutocompleteModel:
+  title: "ELVIX Autocomplete"
+  provider: "elvix-local"
+  model: "qwen2.5-coder:1.5b"
+
+# Enhanced custom commands powered by local models
+customCommands:
+  - name: "test"
+    prompt: |
+      Write comprehensive unit tests for the highlighted code using ELVIX AI's advanced reasoning.
+      Include:
+      - Edge cases and boundary conditions
+      - Error scenarios and exception handling
+      - Mock objects where appropriate
+      - Clear test descriptions and assertions
+      - Performance test considerations if relevant
+      
+  - name: "optimize"
+    prompt: |
+      Analyze this code for performance optimizations and suggest improvements.
+      Consider:
+      - Algorithm complexity and efficiency
+      - Memory usage optimization
+      - Database query optimization (if applicable)
+      - Caching strategies
+      - Parallelization opportunities
+      - Code readability vs performance trade-offs
+      
+  - name: "secure"
+    prompt: |
+      Review this code for security vulnerabilities and suggest fixes.
+      Check for:
+      - Input validation and sanitization
+      - SQL injection vulnerabilities
+      - XSS prevention
+      - Authentication and authorization issues
+      - Data encryption and secure storage
+      - OWASP Top 10 compliance
+      
+  - name: "document"
+    prompt: |
+      Generate comprehensive documentation for this code including:
+      - Clear function/method descriptions
+      - Parameter and return value documentation
+      - Usage examples with sample inputs/outputs
+      - Error conditions and exceptions
+      - Performance characteristics
+      - Related functions or dependencies
+      
+  - name: "refactor"
+    prompt: |
+      Refactor this code to improve maintainability and follow best practices.
+      Focus on:
+      - Code organization and structure
+      - Design patterns application
+      - DRY principle adherence
+      - SOLID principles compliance
+      - Naming conventions and clarity
+      - Error handling improvements
+
+# Enhanced slash commands for ELVIX AI
+slashCommands:
+  - name: "edit"
+    description: "Edit highlighted code using ELVIX AI's advanced understanding"
+  - name: "comment"
+    description: "Add detailed, context-aware comments to code"
+  - name: "explain"
+    description: "Provide comprehensive code explanations with examples"
+  - name: "fix"
+    description: "Identify and fix bugs using ELVIX AI's reasoning"
+  - name: "performance"
+    description: "Analyze and optimize code performance"
+  - name: "security"
+    description: "Security analysis and vulnerability assessment"
+
+# Comprehensive context providers for better AI understanding
+contextProviders:
+  - name: "diff"
+    params: {}
+  - name: "open"
+    params: {}
+  - name: "terminal"
+    params: {}
+  - name: "problems"
+    params: {}
+  - name: "folder"
+    params: {}
+  - name: "codebase"
+    params: {}
+  - name: "git"
+    params: {}
+  - name: "docs"
+    params: {}
+
+# Privacy-focused configuration
+allowAnonymousTelemetry: false
+
+# Local embeddings for enhanced privacy
+embeddingsProvider:
+  provider: "transformers.js"
+  model: "Xenova/all-MiniLM-L6-v2"
+
+# Experimental features for enhanced capabilities
+experimental:
+  modelRoles: true
+  readRangeSync: true
+  enableLocalModelManager: true
+  enhancedContextAwareness: true
+
+# UI customization for ELVIX AI
+ui:
+  fontSize: 14
+  displayRawMarkdown: false
+  theme: "elvix-modern"
+  showModelStatus: true
+  enableLocalModelBadges: true
+
+# Documentation and help resources
+docs:
+  - title: "ELVIX AI Documentation"
+    startUrl: "https://docs.elvix.ai"
+  - title: "Local Models Guide"
+    startUrl: "https://docs.elvix.ai/local-models"
+  - title: "Privacy & Security"
+    startUrl: "https://docs.elvix.ai/privacy"
+
+# Model management settings
+modelManager:
+  autoUpdateModels: false
+  downloadPath: "~/.elvix/models"
+  maxConcurrentDownloads: 2
+  enableGpuAcceleration: true
+  recommendedModels:
+    - "llama3.1:8b"
+    - "qwen2.5-coder:7b"
+    - "codellama:7b"
